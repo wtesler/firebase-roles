@@ -1,52 +1,36 @@
-## MIVIE Server
+## firebase-roles
 
-Node server for hosting endpoints for MIVIE.
+Firebase roles (claims) manipulation in the backend.
 
-## Architecture
+Users with the 'admin' claim can read all user claims and update them.
 
--Uses Express for hosting endpoints.
--Authorizes endpoints with Firebase Authentication.
--Database interaction is with Firebase Firestore.
--Endpoints are exported with cranny syntax (developed by Will Tesler). See `index.js`.
+Use in conjunction with the `firebase-roles-editor` package in the frontend.
 
-## Setup Gcloud
+### Usage
 
-gcloud auth login
-gcloud config set project mivi-321718
+Ensure `initializeApp` is called on your firebase admin instance before
+anything else.
 
+In your `index.js`:
 
-## Deploy
-
-gcloud app deploy
-
-## Local Development
-
-Use `npm run startDev` .
-
-When website is run locally, it will look for this local server.
-
-All functions have associated admin files for running the functionality directly.
-
-## cURLing
-
-POST `curl -d '{"sid": "LTAK7E"}' -H 'Content-Type: application/json' http://localhost:8080/funcName`
-GET `curl http://localhost:8080/funcName`
-
-### Google Cloud Storage CORS Support
-
-#### One Time Setup (Per Google Cloud Storage Bucket)
-Paste the following into a json file called `cors.json`:
 ```
-[
-    {
-      "origin": ["*"],
-      "responseHeader": ["Content-Type", "Access-Control-Allow-Origin", "x-goog-resumable"],
-      "method": ["PUT", "GET", "POST"],
-      "maxAgeSeconds": 3600
-    }
-]
+const {endpoints} = require("firebase-roles");
 ```
 
-Run `gsutil cors set cors.json gs://BUCKET`
+Endpoints are returned in cranny syntax which looks like:
+```
+{
+    type: 'get',
+    route: '/endpointName',
+    obj: Func
+}
+```
 
-Where `BUCKET` is the bucket which needs CORS support.
+The `obj` is a function which you should set to run when the endpoint is hit.
+For example, with express:
+
+```
+  for (const endpoint of endpoints) {
+    app[endpoint.type](endpoint.route, endpoint.obj);
+  }
+```
