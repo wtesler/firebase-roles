@@ -1,0 +1,30 @@
+{
+  "name": "firebase-roles",
+  "version": "1.0.7",
+  "description": "Firebase roles (claims) manipulation in the backend.",
+  "author": "Will Tesler",
+  "main": "src/index.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wtesler/firebase-roles.git"
+  },
+  "homepage": "https://github.com/wtesler/firebase-roles",
+  "keywords": [
+    "firebase",
+    "roles",
+    "claims",
+    "server"
+  ],
+  "dependencies": {
+    "cranny": "^2",
+    "firebase-admin": "^9"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "cross-env": "7.0.3",
+    "eslint": "7.29.0",
+    "eslint-plugin-promise": "5.1.0",
+    "prettier": "2.3.2"
+  }
+}
