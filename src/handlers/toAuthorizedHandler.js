@@ -10,7 +10,7 @@ module.exports = function(handler, roles=[], forceAuth=true) {
       }
 
       for (const role of roles) {
-        if (!user || user[role]) {
+        if (!user || !user[role]) {
           const e = new Error('Access Denied.');
           e.code = 403;
           throw e;

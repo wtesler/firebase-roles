@@ -1,6 +1,6 @@
 {
   "name": "firebase-roles",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Firebase roles (claims) manipulation in the backend.",
   "author": "Will Tesler",
   "main": "src/index.js",
