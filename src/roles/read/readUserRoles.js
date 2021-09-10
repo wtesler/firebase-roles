@@ -3,7 +3,7 @@ module.exports = async (pageToken) => {
 
   const auth = admin.auth();
 
-  const listUsersResult = await auth.listUsers(1000, pageToken);
+  const listUsersResult = await auth.listUsers(50, pageToken);
 
   const users = listUsersResult.users.map((userRecord) => {
     const data = userRecord.toJSON();
