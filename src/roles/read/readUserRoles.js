@@ -8,6 +8,7 @@ module.exports = async (pageToken, claim = null, email = null, count=50) => {
   if (!count) {
     count = 50;
   }
+  count = Number(count);
 
   if (email) {
     const result = await auth.getUsers([{ email: email }]);
