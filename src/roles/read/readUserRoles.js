@@ -23,7 +23,6 @@ module.exports = async (pageToken, claim = null, email = null, count=50) => {
       newPageToken = result.pageToken;
     } while (newPageToken);
   } else {
-    console.log(count, pageToken);
     const result = await auth.listUsers(count, pageToken);
     users = result.users;
     newPageToken = result.pageToken;
