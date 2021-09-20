@@ -17,7 +17,7 @@ module.exports = function(handler, roles=[], forceAuth=true) {
         roles = [roles];
       }
 
-      let hasRole = false;
+      let hasRole = roles.length === 0;
       for (const role of roles) {
         if (user && user[role]) {
           hasRole = true;
