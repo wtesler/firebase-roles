@@ -1,7 +1,7 @@
-const authorizedPost = require('../../../handlers/authorizedPost');
+const authorizedRest = require('../../../handlers/authorizedRest');
 const {parameterError} = require('cranny');
 
-module.exports = authorizedPost(async (req, res, user) => {
+module.exports = authorizedRest(async (req, res, user) => {
   const uid = req.body.uid;
   const roles = req.body.roles;
   if (!uid || !roles) {

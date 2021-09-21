@@ -1,6 +1,6 @@
-const authorizedGet = require('../../../handlers/authorizedGet');
+const authorizedRest = require('../../../handlers/authorizedRest');
 
-module.exports = authorizedGet(async (req, res, user) => {
+module.exports = authorizedRest(async (req, res, user) => {
   const pageToken = req.query.pageToken;
   const claim = req.query.claim;
   const email = req.query.email;

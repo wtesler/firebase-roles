@@ -1,4 +1,4 @@
-const {post} = require('cranny');
+const {rest} = require('cranny');
 const toAuthorizedHandler = require('./toAuthorizedHandler');
 
 /**
@@ -10,5 +10,5 @@ const toAuthorizedHandler = require('./toAuthorizedHandler');
  * @param forceAuth True if the endpoint should throw an error when unauthorized.
  */
 module.exports = function (handler, roles = [], forceAuth = true) {
-  return post(toAuthorizedHandler(handler, roles, forceAuth));
+  return rest(toAuthorizedHandler(handler, roles, forceAuth));
 };
