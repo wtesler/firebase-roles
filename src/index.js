@@ -2,9 +2,9 @@ const toAuthorizedHandler = require('./handlers/toAuthorizedHandler');
 const authorizedRest = require('./handlers/authorizedRest');
 const updateUserRoles = require('./roles/update/updateUserRoles');
 const readUserRoles = require('./roles/read/readUserRoles');
-const {getEndpoints} = require("cranny");
+const {discoverEndpoints} = require("cranny");
 
-const endpoints = getEndpoints(__dirname);
+const endpoints = discoverEndpoints(__dirname);
 
 const theModule = {
   toAuthorizedHandler: toAuthorizedHandler,
