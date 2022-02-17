@@ -34,3 +34,9 @@ For example, with express:
     app[endpoint.type](endpoint.route, endpoint.obj);
   }
 ```
+
+### Updating IAM for app engine access.
+
+Find the item named "App Engine default service account" in IAM
+settings in Google Cloud. Add "Secret Manager Secret Accessor" role
+to it.
