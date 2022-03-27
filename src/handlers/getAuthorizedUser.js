@@ -1,5 +1,3 @@
-const admin = require('firebase-admin');
-
 /**
  * Ensure the request is authorized and return the authorized user if it is.
  * The user has fields such as: uid, name, email, email_verified, picture.
@@ -8,6 +6,11 @@ const admin = require('firebase-admin');
  * @param forceAuth True if the endpoint should throw an error when unauthorized.
  */
 module.exports = async function (req, forceAuth=true) {
+  const {getApp} = require('firebase-admin/app');
+  const {getAuth} = require('firebase-admin/auth');
+
+  const auth = getAuth(getApp());
+
   const TOKEN_PREFIX = "Bearer ";
 
   const headers = req.headers;
@@ -40,9 +43,7 @@ module.exports = async function (req, forceAuth=true) {
   }
 
   try {
-    return await admin
-      .auth()
-      .verifyIdToken(idToken);
+    return await auth.verifyIdToken(idToken);
   } catch (e) {
     return handleUnauthorized();
   }

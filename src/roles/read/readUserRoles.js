@@ -1,6 +1,7 @@
 module.exports = async (pageToken, claim = null, email = null, count=50) => {
-  const admin = require('firebase-admin');
-  const auth = admin.auth();
+  const {getAuth} = require('firebase-admin/auth');
+
+  const auth = getAuth();
 
   let users = [];
   let newPageToken = undefined;

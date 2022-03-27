@@ -1,6 +1,3 @@
-const {rest} = require('cranny');
-const toAuthorizedHandler = require('./toAuthorizedHandler');
-
 /**
  * Turns the provided handler function into an authorized HTTPS POST function.
  * The function passes in the authorized user to the handler.
@@ -10,5 +7,8 @@ const toAuthorizedHandler = require('./toAuthorizedHandler');
  * @param forceAuth True if the endpoint should throw an error when unauthorized.
  */
 module.exports = function (handler, roles = [], forceAuth = true) {
+  const {rest} = require('cranny');
+  const toAuthorizedHandler = require('./toAuthorizedHandler');
+
   return rest(toAuthorizedHandler(handler, roles, forceAuth));
 };

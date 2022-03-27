@@ -1,6 +1,6 @@
-const getAuthorizedUser = require("./getAuthorizedUser");
-
 module.exports = function(handler, roles=[], forceAuth=true) {
+  const getAuthorizedUser = require("./getAuthorizedUser");
+
   return async (req, res) => {
     const user = await getAuthorizedUser(req, forceAuth);
 

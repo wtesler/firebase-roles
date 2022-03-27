@@ -1,7 +1,7 @@
 module.exports = async (uid, roles) => {
-  const admin = require('firebase-admin');
+  const {getAuth} = require('firebase-admin/auth');
 
-  const auth = admin.auth();
+  const auth = getAuth();
 
   const rolesObj = {};
   for (const role of roles) {
