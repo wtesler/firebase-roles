@@ -1,4 +1,4 @@
-const toAuthorizedHandler = require('./handlers/toAuthorizedHandler');
+const authorized = require('./handlers/authorized');
 const authorizedRest = require('./handlers/authorizedRest');
 const updateUserRoles = require('./roles/update/updateUserRoles');
 const deleteUserRoles = require('./roles/delete/deleteUserRoles');
@@ -8,7 +8,7 @@ const {discoverEndpoints} = require("cranny");
 const endpoints = discoverEndpoints(__dirname);
 
 const theModule = {
-  toAuthorizedHandler: toAuthorizedHandler,
+  authorized: authorized,
   authorizedRest: authorizedRest,
   updateUserRoles: updateUserRoles,
   deleteUserRoles: deleteUserRoles,

@@ -8,7 +8,37 @@
  * @param roles Required roles or empty.
  * @param forceAuth True if the endpoint should throw an error when unauthorized.
  */
-module.exports = function (handler, roles = [], forceAuth = true) {
-  const toAuthorizedHandler = require('./toAuthorizedHandler');
-  return toAuthorizedHandler(handler, roles, forceAuth);
+module.exports = function(handler, roles=[], forceAuth=true) {
+  const getAuthorizedUser = require("./getAuthorizedUser");
+
+  return async (req, res) => {
+    const user = await getAuthorizedUser(req, forceAuth);
+
+    if (roles) {
+      // Will be thrown if conditions below are not met.
+      const e = new Error('Access Denied.');
+      e.code = 403;
+
+      if (!user) {
+        throw e;
+      }
+
+      if (!Array.isArray(roles)) {
+        roles = [roles];
+      }
+
+      let hasRole = roles.length === 0;
+      for (const role of roles) {
+        if (user && user[role]) {
+          hasRole = true;
+          break;
+        }
+      }
+      if (!hasRole) {
+        throw e;
+      }
+    }
+
+    return await handler(req, res, user);
+  };
 };
